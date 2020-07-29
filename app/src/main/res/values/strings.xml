@@ -7,4 +7,14 @@
 
     <!-- Profile Fragment -->
     <string name="profile_action_bar_title">Profile</string>
+
+    <!-- Login Fragment -->
+    <string name="login_action_bar_title">Login</string>
+    <string name="login_text_message_welcome">Welcome back 🎉</string>
+    <string name="login_input_layout_hint_username">Username</string>
+    <string name="login_input_layout_hint_password">Password</string>
+    <string name="login_btn_text_sign_in">Sign In</string>
+    <string name="login_btn_text_sign_up">Sign Up</string>
+    <string name="login_input_layout_error_invalid_username">Invalid Username</string>
+    <string name="login_input_layout_error_invalid_password">Invalid Password</string>
 </resources>
