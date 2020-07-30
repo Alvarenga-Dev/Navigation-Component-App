@@ -1,4 +1,4 @@
-package com.alvarengadev.navigationcomponentapp.view.profile
+package com.alvarengadev.navigationcomponentapp.view.register.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
