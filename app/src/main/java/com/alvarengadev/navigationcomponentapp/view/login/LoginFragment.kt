@@ -3,17 +3,20 @@ package com.alvarengadev.navigationcomponentapp.view.login
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.alvarengadev.navigationcomponentapp.R
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
 
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
@@ -21,7 +24,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider.NewInstanceFactory().create(LoginViewModel::class.java)
+        setHasOptionsMenu(true)
 
         viewModel.authenticationStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
             if (authenticationState is LoginViewModel.AuthenticationState.InvalidAuthentication) {
@@ -29,6 +32,8 @@ class LoginFragment : Fragment() {
                 authenticationState.fields.forEach {fieldError ->
                     validationStrings[fieldError.first]?.error = getString(fieldError.second)
                 }
+            } else if (authenticationState is LoginViewModel.AuthenticationState.Authenticated) {
+                findNavController().popBackStack()
             }
         })
 
@@ -38,6 +43,20 @@ class LoginFragment : Fragment() {
 
             viewModel.authentication(username, password)
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            cancelAuthentication()
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        cancelAuthentication()
+        return true
+    }
+
+    private fun cancelAuthentication() {
+        viewModel.refuseAuthentication()
+        findNavController().popBackStack(R.id.startFragment, false)
     }
 
     private fun initValidationFields() = mapOf(

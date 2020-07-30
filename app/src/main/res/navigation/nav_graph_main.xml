@@ -19,4 +19,9 @@
         android:name="com.alvarengadev.navigationcomponentapp.view.profile.ProfileFragment"
         android:label="@string/profile_action_bar_title"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.alvarengadev.navigationcomponentapp.view.login.LoginFragment"
+        android:label="@string/login_action_bar_title"
+        tools:layout="@layout/fragment_login" />
 </navigation>

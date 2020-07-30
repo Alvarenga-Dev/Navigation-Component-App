@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".view.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv_welcome_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/profile_action_bar_title" />
+        tools:text="Welcome, Lucas"
+        android:gravity="center"/>
 
 </FrameLayout>

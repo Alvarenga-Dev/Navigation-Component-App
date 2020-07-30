@@ -7,14 +7,26 @@ import com.alvarengadev.navigationcomponentapp.R
 class LoginViewModel : ViewModel() {
 
     sealed class AuthenticationState {
+        object NotAuthenticated : AuthenticationState()
+        object Authenticated : AuthenticationState()
         class InvalidAuthentication(val fields: List<Pair<String, Int>>) : AuthenticationState()
     }
 
     val authenticationStateEvent = MutableLiveData<AuthenticationState>()
+    var username: String = ""
+
+    init {
+        refuseAuthentication()
+    }
+
+    fun refuseAuthentication() {
+        authenticationStateEvent.value = AuthenticationState.NotAuthenticated
+    }
 
     fun authentication(username: String, password: String) {
         if (isValidForm(username, password)) {
-
+            this.username = username
+            authenticationStateEvent.value = AuthenticationState.Authenticated
         }
     }
 
