@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.alvarengadev.navigationcomponentapp.view.register.profile.ProfileFragment"
+        android:name="com.alvarengadev.navigationcomponentapp.view.profile.ProfileFragment"
         android:label="@string/profile_action_bar_title"
         tools:layout="@layout/fragment_profile" />
     <fragment
