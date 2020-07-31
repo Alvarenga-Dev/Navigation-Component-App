@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.alvarengadev.navigationcomponentapp.R
 import com.alvarengadev.navigationcomponentapp.extensions.dismissError
+import com.alvarengadev.navigationcomponentapp.extensions.navigateWithAnimation
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -44,6 +45,10 @@ class LoginFragment : Fragment() {
             val password = input_layout_password.editText!!.text.toString()
 
             viewModel.authentication(username, password)
+        }
+
+        btn_sign_up.setOnClickListener {
+            findNavController().navigateWithAnimation(R.id.action_loginFragment_to_registration_graph)
         }
 
         input_layout_username.editText!!.addTextChangedListener {
