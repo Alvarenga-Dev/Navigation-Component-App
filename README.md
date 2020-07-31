@@ -1,6 +1,6 @@
 # Navigation-Component-App
 
-Projeto de estudo para o componente de navegação do Android Jetpack. Teve como objetivo inicializar meus estudos sobre a biblioteca e melhorar minhas práticas como desenvolvedor Android. Não realizei a construção de uma UI muito complexa, mas no código em si.  
+Projeto de estudo para o componente de navegação do Android Jetpack. Teve como objetivo inicializar meus estudos sobre a biblioteca e melhorar minhas práticas como desenvolvedor Android. Não realizei a construção de uma UI muito complexa, mas procurei focar no código.  
 
 ## ⛏️ Construído com
 
