@@ -35,7 +35,9 @@ class LoginFragment : Fragment() {
                 authenticationState.fields.forEach {fieldError ->
                     validationStrings[fieldError.first]?.error = getString(fieldError.second)
                 }
-            } else if (authenticationState is LoginViewModel.AuthenticationState.Authenticated) {
+            }
+
+            if (authenticationState is LoginViewModel.AuthenticationState.Authenticated) {
                 findNavController().popBackStack()
             }
         })
