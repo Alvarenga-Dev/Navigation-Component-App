@@ -23,5 +23,34 @@
         android:id="@+id/loginFragment"
         android:name="com.alvarengadev.navigationcomponentapp.view.login.LoginFragment"
         android:label="@string/login_action_bar_title"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registration_graph"
+            app:destination="@id/registration_graph" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/registration_graph"
+        app:startDestination="@id/profileDataFragment">
+        <fragment
+            android:id="@+id/profileDataFragment"
+            android:name="com.alvarengadev.navigationcomponentapp.view.register.profile.ProfileDataFragment"
+            android:label="@string/profile_data_action_bar_title"
+            tools:layout="@layout/fragment_profile_data">
+            <action
+                android:id="@+id/action_profileDataFragment_to_credentialsFragment"
+                app:destination="@id/credentialsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/credentialsFragment"
+            android:name="com.alvarengadev.navigationcomponentapp.view.register.credentials.CredentialsFragment"
+            android:label="@string/choose_credentials_action_bar_title"
+            tools:layout="@layout/fragment_credendials">
+
+            <argument
+                android:name="name"
+                app:argType="string"
+                app:nullable="false" />
+        </fragment>
+    </navigation>
 </navigation>

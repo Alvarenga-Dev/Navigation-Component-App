@@ -1,5 +1,6 @@
 package com.alvarengadev.navigationcomponentapp.view.login
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alvarengadev.navigationcomponentapp.R
@@ -12,21 +13,31 @@ class LoginViewModel : ViewModel() {
         class InvalidAuthentication(val fields: List<Pair<String, Int>>) : AuthenticationState()
     }
 
-    val authenticationStateEvent = MutableLiveData<AuthenticationState>()
     var username: String = ""
+    var token: String = ""
+
+    private val _authenticationStateEvent = MutableLiveData<AuthenticationState>()
+    val authenticationStateEvent: LiveData<AuthenticationState>
+        get() = _authenticationStateEvent
 
     init {
         refuseAuthentication()
     }
 
     fun refuseAuthentication() {
-        authenticationStateEvent.value = AuthenticationState.NotAuthenticated
+        _authenticationStateEvent.value = AuthenticationState.NotAuthenticated
+    }
+
+    fun authenticateToken(token: String, username: String) {
+        this.token = token
+        this.username = username
+        _authenticationStateEvent.value = AuthenticationState.Authenticated
     }
 
     fun authentication(username: String, password: String) {
         if (isValidForm(username, password)) {
             this.username = username
-            authenticationStateEvent.value = AuthenticationState.Authenticated
+            _authenticationStateEvent.value = AuthenticationState.Authenticated
         }
     }
 
@@ -41,7 +52,8 @@ class LoginViewModel : ViewModel() {
         }
 
         if (invalidFields.isNotEmpty()) {
-            authenticationStateEvent.value = AuthenticationState.InvalidAuthentication(invalidFields)
+            _authenticationStateEvent.value =
+                AuthenticationState.InvalidAuthentication(invalidFields)
             return false
         }
         return true
